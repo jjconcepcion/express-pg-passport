@@ -10,7 +10,8 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res, next) {
   const { email, username, password } = req.body;
 
-  User.createUser(email, username, password)
+  User.generatePasswordHash(password)
+    .then(passwordHash => User.createUser(email, username, passwordHash))
     .then(results => results.rows)
     .then(user => res.redirect('/users'))
     .catch(error => {
