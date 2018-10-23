@@ -13,6 +13,17 @@ function createUser(email, username, password) {
   return db.query(query);
 }
 
+function findByUsername(username) {
+  const query = {
+    text: `
+    SELECT * FROM users
+    WHERE username = $1
+    `,
+    values: [username],
+  }
+  return db.query(query);
+}
+
 function generatePasswordHash(plaintextPassword) {
   const saltRounds = 10;
   return new Promise((resolve, reject) => {
@@ -32,7 +43,13 @@ function generatePasswordHash(plaintextPassword) {
   });
 }
 
+function verifyPassword(plaintextPassword, passwordHash) {
+  return bcrypt.compare(plaintextPassword, passwordHash);
+}
+
 module.exports = {
   createUser,
   generatePasswordHash,
+  findByUsername,
+  verifyPassword,
 }
