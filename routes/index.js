@@ -9,9 +9,12 @@ router.get('/', function(req, res, next) {
     req.session.visits += 1;
   }
 
+  const username = req.user ? req.user.username : '';
+
   res.render('index', {
     title: 'Express',
     visits: req.session.visits,
+    username,
   });
 });
 

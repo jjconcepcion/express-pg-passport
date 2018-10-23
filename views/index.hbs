@@ -1,4 +1,6 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
-
+{{#if username }}
+    <p>Logged in as: {{username}}</p>
+{{/if}}
 <p>session visits: {{visits}}</p>

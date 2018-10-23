@@ -2,6 +2,8 @@ const createError = require('http-errors');
 const express = require('express');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
+const passport = require('passport');
+require('./config/pass')(passport);
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -11,6 +13,7 @@ const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 const usersRouter = require('./routes/users');
 const dbPool = require('./database');
+
 
 const app = express();
 
@@ -34,7 +37,8 @@ app.use(session({
   saveUninitialized: true,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }));
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
