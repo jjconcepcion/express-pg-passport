@@ -5,7 +5,11 @@ const validate = require('../models/validation');
 const router = express.Router();
 
 router.get('/', function(req, res) {
-  res.render('register');
+  if (req.user) {
+    res.redirect('/');
+  } else {
+    res.render('register');
+  }
 });
 
 router.post('/', function(req, res, next) {

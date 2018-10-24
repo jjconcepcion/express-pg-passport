@@ -3,7 +3,11 @@ const passport = require('passport')
 const router = express.Router();
 
 router.get('/', function(req, res) {
-  res.render('login');
+  if (req.user) {
+    res.redirect('/')
+  } else {
+    res.render('login');
+  }
 });
 
 router.post('/', passport.authenticate('local', { 
