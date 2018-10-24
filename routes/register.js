@@ -18,8 +18,16 @@ router.post('/', function(req, res, next) {
     
     User.generatePasswordHash(password)
       .then(passwordHash => User.createUser(email, username, passwordHash))
-      .then(results => results.rows)
-      .then(user => res.redirect('/users'))
+      .then(results => results.rows[0])
+      .then(user => {
+        req.login(user, (err) => {
+          if (err) {
+            return next(err);
+          } else {
+            res.redirect('/');
+          }
+        })
+      })
       .catch(error => {
         if (error.code = dbError.unique_violation) {
           const fieldName = (error.detail.match(/email/)) ? 'email' : 'username';
