@@ -14,6 +14,7 @@ router.get('/', function(req, res, next) {
   res.render('index', {
     title: 'Express',
     visits: req.session.visits,
+    loggedIn: req.user,
     username,
   });
 });
