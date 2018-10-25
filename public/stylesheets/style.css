@@ -1,8 +1,38 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #fbfbfb;
 }
 
-a {
-  color: #00B7FF;
+/*
+* NAV
+*
+*/
+
+nav {
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+/*
+* FORMS
+*
+*/
+.form-container{
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 540px;
+}
+
+.form-heading {
+  font-size: 180%;
+  margin-bottom: 10px;
+}
+
+form button {
+  background-color: #0067b8;
+  color: #fff;
+}
+
+form button:hover {
+  background-color: #1156a7;
+  color: #fff;
 }
