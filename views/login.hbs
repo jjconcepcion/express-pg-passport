@@ -1,13 +1,21 @@
-<form method="POST" action="/login">
-    <h1>Sign In</h1>
+<div class="form-container">
+  <form method="POST" action="/login" class="form">
+    <h1>Login</h1>
     {{#if message}}
-        <div>{{message}}</div>
+      <div class="alert alert-danger" role="alert">
+          {{message}}
+      </div>
     {{/if}}
-    <label for="username"><b>Username</b></label>
-    <input type="text" name="username" required>
-
-    <label for="password"><b>Password</b></label>
-    <input type="password" name="password" required>
-
-    <button type="submit">Register</button>
-</form>
+    <div class="form-group input-group-sm">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" required>
+    </div>
+    <div class="form-group input-group-sm">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" required>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-block">Sign In</button>
+    </div>
+  </form>
+</div>
